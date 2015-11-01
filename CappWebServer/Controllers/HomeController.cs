@@ -8,6 +8,7 @@ namespace CappWebServer.Controllers
 {
     public class HomeController : Controller
     {
+        [AllowAnonymous] 
         public ActionResult Index()
         {
             return View();
@@ -20,11 +21,13 @@ namespace CappWebServer.Controllers
             return View();
         }
 
+        [Authorize] 
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
             return View();
         }
+        
     }
 }
