@@ -22,3 +22,7 @@ select,
 textarea {
     max-width: 280px;
 }
+
+<style type="text/css">
+   body { background: navy !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+</style>
