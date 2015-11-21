@@ -39,14 +39,14 @@ namespace CappWebServer.Controllers
                 var user = dc.Professor.Where(a => a.Email.Equals(l.Email) && a.Senha.Equals(l.Senha)).FirstOrDefault();
                 if (user != null)
                 {
-                    FormsAuthentication.SetAuthCookie(user.Nome, l.Lembrar);
+                    FormsAuthentication.SetAuthCookie(user.ProfessorID.ToString(), l.Lembrar);
                     if (Url.IsLocalUrl(ReturnUrl))
                     {
                         return Redirect(ReturnUrl);
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Provas");
                     }
                 }
                 else
@@ -86,8 +86,8 @@ namespace CappWebServer.Controllers
                         dc.Professor.Add(p);
                         dc.SaveChanges();
 
-                        FormsAuthentication.SetAuthCookie(p.Nome, false);
-                        return RedirectToAction("Index", "Home");
+                        FormsAuthentication.SetAuthCookie(p.ProfessorID.ToString(), false);
+                        return RedirectToAction("Index", "Provas");
                     }
                     else
                     {

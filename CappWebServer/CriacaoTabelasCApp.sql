@@ -14,15 +14,13 @@ GO */
 
 CREATE TABLE [dbo].[Prova] (
 	[ProvaID] int IDENTITY(1,1) PRIMARY KEY,
-	[CodigoProva] varchar(50) NOT NULL,
+	[CodigoProva] varchar(50) NULL,
 	[ProfessorID] [int] NOT NULL,
 	[Nome] varchar(50) NOT NULL,
 	[QtdQuestoes] [tinyint] NOT NULL,
-	[DataCriada] [datetime] NOT NULL
+	[DataCriada] varchar(50) NULL
 ) 
 GO
-
-ALTER TABLE [dbo].[Prova] ADD CONSTRAINT UQ_Codico UNIQUE (CodigoProva)
 
 
 /* Resposta
@@ -32,7 +30,7 @@ GO  */
 
 CREATE TABLE [dbo].[Resposta] (
 	[RespostaID] int IDENTITY(1,1) PRIMARY KEY,
-	[CodigoProva] varchar(50) NOT NULL,
+	[ProvaID] int NOT NULL,
 	[CodigoAluno] varchar(50) NOT NULL,
 	[Questao] [tinyint] NOT NULL,
 	[Alternativa] varchar(50) NOT NULL
@@ -81,8 +79,8 @@ GO
 
 /*--------------------------------------------------------------------------------------------------*/
 
-ALTER TABLE [dbo].[Resposta]  WITH NOCHECK ADD  CONSTRAINT [FK_Resposta_Prova] FOREIGN KEY([CodigoProva])
-REFERENCES [dbo].[Prova] ([CodigoProva])
+ALTER TABLE [dbo].[Resposta]  WITH NOCHECK ADD  CONSTRAINT [FK_Resposta_Prova] FOREIGN KEY([ProvaID])
+REFERENCES [dbo].[Prova] ([ProvaID])
 GO
 
 ALTER TABLE [dbo].[Resposta] CHECK CONSTRAINT [FK_Resposta_Prova]

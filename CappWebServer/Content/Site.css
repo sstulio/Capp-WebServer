@@ -22,3 +22,13 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.btn-criar-prova{
+    float:right;
+    margin-bottom:20px;
+}
+
+.ic-criar{
+    float:left;
+    margin-right:10px;
+}

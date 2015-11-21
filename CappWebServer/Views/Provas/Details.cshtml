@@ -1,0 +1,59 @@
+﻿@model CappWebServer.Prova
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Prova</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Professor.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Professor.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoProva)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodigoProva)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QtdQuestoes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QtdQuestoes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataCriada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataCriada)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProvaID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

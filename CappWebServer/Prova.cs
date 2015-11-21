@@ -24,7 +24,7 @@ namespace CappWebServer
 
         public byte QtdQuestoes { get; set; }
 
-        public DateTime DataCriada { get; set; }
+        public string DataCriada { get; set; }
 
         public virtual Professor Professor { get; set; }
     }
