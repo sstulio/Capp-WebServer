@@ -19,13 +19,5 @@ namespace CappWebServer.Models
         [Display(Name = "Quantidade de questões")]
         public byte QtdQuestoes { get; set; }
 
-        [Required]
-        [Display(Name = "Código")]
-        public string CodigoProva { get; set; }
-
-        [Required]
-        [Display(Name = "Data de criação")]
-        public string DataCriada { get; set; }
-
     }
 }

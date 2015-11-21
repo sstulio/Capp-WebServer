@@ -20,40 +20,41 @@
                     @Html.DisplayNameFor(model => model.Nome)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.CodigoProva)
+                    Código da prova
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.QtdQuestoes)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.DataCriada)
+                    Data de criação
                 </th>
                 <th>
                 </th>
             </tr>
 
-            @foreach (var item in Model.listaProvas)
-
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Nome)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CodigoProva)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.QtdQuestoes)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DataCriada)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Editar", "Edit", new { id = item.ProvaID }) |
-                        @Html.ActionLink("Detalhes", "Details", new { id = item.ProvaID }) |
-                        @Html.ActionLink("Deletar", "Delete", new { id = item.ProvaID })
-                    </td>
-                </tr>
+            @if (Model != null && Model.listaProvas != null) { 
+                foreach (var item in Model.listaProvas)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CodigoProva)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.QtdQuestoes)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DataCriada)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Editar", "Edit", new { id = item.ProvaID }) |
+                            @Html.ActionLink("Detalhes", "Details", new { id = item.ProvaID }) |
+                            @Html.ActionLink("Deletar", "Delete", new { id = item.ProvaID })
+                        </td>
+                    </tr>
+                }
             }
 
         </table>
