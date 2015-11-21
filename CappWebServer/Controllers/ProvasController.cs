@@ -19,7 +19,8 @@ namespace CappWebServer.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            var prova = db.Prova.Include(p => p.Professor);
+            int professorId = int.Parse(User.Identity.Name);
+            var prova = db.Prova.Where(p => p.ProfessorID == professorId);
             ProvaViewModel model = new ProvaViewModel();
             model.listaProvas = prova.ToList();
             return View(model);
