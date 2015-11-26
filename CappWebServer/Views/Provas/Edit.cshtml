@@ -1,4 +1,4 @@
-﻿@model CappWebServer.Prova
+@model CappWebServer.Prova
 
 @{
     ViewBag.Title = "Edit";
@@ -16,6 +16,10 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ProvaID)
+        @Html.HiddenFor(model => model.DataCriada)
+        @Html.HiddenFor(model => model.CodigoProva)
+        @Html.HiddenFor(model => model.Professor)
+        @Html.HiddenFor(model => model.ProfessorID)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -29,7 +33,7 @@
             @Html.LabelFor(model => model.QtdQuestoes, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.QtdQuestoes, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.QtdQuestoes, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.QtdQuestoes, "Número máximo é 255", new { @class = "text-danger" })
             </div>
         </div>
 
