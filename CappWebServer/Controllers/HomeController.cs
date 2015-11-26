@@ -16,7 +16,7 @@ namespace CappWebServer.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "O que é CApp?";
 
             return View();
         }
@@ -24,7 +24,7 @@ namespace CappWebServer.Controllers
         [Authorize] 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Informacoes para contato";
 
             return View();
         }
