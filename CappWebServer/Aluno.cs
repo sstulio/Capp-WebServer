@@ -9,7 +9,6 @@ namespace CappWebServer
     [Table("Aluno")]
     public partial class Aluno
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int AlunoID { get; set; }
 
         [Required]

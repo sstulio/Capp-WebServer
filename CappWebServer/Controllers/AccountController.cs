@@ -34,7 +34,7 @@ namespace CappWebServer.Controllers
         [HttpPost]
         public ActionResult Login(LoginViewModel l, string ReturnUrl = "")
         {
-            using (DataModel dc = new DataModel())
+            using (CAppDataModel dc = new CAppDataModel())
             {
                 var user = dc.Professor.Where(a => a.Email.Equals(l.Email) && a.Senha.Equals(l.Senha)).FirstOrDefault();
                 if (user != null)
@@ -72,7 +72,7 @@ namespace CappWebServer.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (DataModel dc = new DataModel())
+                using (CAppDataModel dc = new CAppDataModel())
                 {
                     
                     Professor p = new Professor();

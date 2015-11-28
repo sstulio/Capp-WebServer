@@ -9,21 +9,20 @@ namespace CappWebServer
     [Table("Resposta")]
     public partial class Resposta
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RespostaID { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string CodigoProva { get; set; }
+        public int ProvaID { get; set; }
 
         [Required]
         [StringLength(50)]
         public string CodigoAluno { get; set; }
 
-        public byte Questao { get; set; }
+        public int Questao { get; set; }
 
         [Required]
         [StringLength(50)]
         public string Alternativa { get; set; }
+
+        public byte isGabarito { get; set; }
     }
 }

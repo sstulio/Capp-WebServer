@@ -5,10 +5,10 @@ namespace CappWebServer
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class DataModel : DbContext
+    public partial class CAppDataModel : DbContext
     {
-        public DataModel()
-            : base("name=DataModel")
+        public CAppDataModel()
+            : base("name=CAppDataModel1")
         {
         }
 
@@ -39,11 +39,6 @@ namespace CappWebServer
                 .Property(e => e.Senha)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Professor>()
-                .HasMany(e => e.Prova)
-                .WithRequired(e => e.Professor)
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<Prova>()
                 .Property(e => e.CodigoProva)
                 .IsUnicode(false);
@@ -52,8 +47,8 @@ namespace CappWebServer
                 .Property(e => e.Nome)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Resposta>()
-                .Property(e => e.CodigoProva)
+            modelBuilder.Entity<Prova>()
+                .Property(e => e.DataCriada)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Resposta>()

@@ -9,12 +9,6 @@ namespace CappWebServer
     [Table("Professor")]
     public partial class Professor
     {
-        public Professor()
-        {
-            Prova = new HashSet<Prova>();
-        }
-
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ProfessorID { get; set; }
 
         [Required]
@@ -28,7 +22,5 @@ namespace CappWebServer
         [Required]
         [StringLength(50)]
         public string Senha { get; set; }
-
-        public virtual ICollection<Prova> Prova { get; set; }
     }
 }

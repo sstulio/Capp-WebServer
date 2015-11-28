@@ -9,10 +9,8 @@ namespace CappWebServer
     [Table("Prova")]
     public partial class Prova
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ProvaID { get; set; }
 
-        [Required]
         [StringLength(50)]
         public string CodigoProva { get; set; }
 
@@ -22,10 +20,9 @@ namespace CappWebServer
         [StringLength(50)]
         public string Nome { get; set; }
 
-        public byte QtdQuestoes { get; set; }
+        public int QtdQuestoes { get; set; }
 
+        [StringLength(50)]
         public string DataCriada { get; set; }
-
-        public virtual Professor Professor { get; set; }
     }
 }

@@ -7,42 +7,34 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-/* Prova
-
-DROP TABLE [dbo].[Prova]
-GO */
+/* Prova */
 
 CREATE TABLE [dbo].[Prova] (
 	[ProvaID] int IDENTITY(1,1) PRIMARY KEY,
 	[CodigoProva] varchar(50) NULL,
 	[ProfessorID] [int] NOT NULL,
 	[Nome] varchar(50) NOT NULL,
-	[QtdQuestoes] [tinyint] NOT NULL,
+	[QtdQuestoes] int NOT NULL,
 	[DataCriada] varchar(50) NULL
 ) 
 GO
 
 
-/* Resposta
-
-DROP TABLE [dbo].[Resposta]
-GO  */
+/* Resposta */
 
 CREATE TABLE [dbo].[Resposta] (
 	[RespostaID] int IDENTITY(1,1) PRIMARY KEY,
 	[ProvaID] int NOT NULL,
 	[CodigoAluno] varchar(50) NOT NULL,
-	[Questao] [tinyint] NOT NULL,
-	[Alternativa] varchar(50) NOT NULL
+	[Questao] int NOT NULL,
+	[Alternativa] varchar(50) NOT NULL,
+	[isGabarito] tinyint NOT NULL
 	
 )
 GO
 
 
-/* Professor 
-
-DROP TABLE [dbo].[Professor]
-GO*/
+/* Professor */
 
 CREATE TABLE [dbo].[Professor] (
 	[ProfessorID] int IDENTITY(1,1) PRIMARY KEY,
@@ -55,10 +47,7 @@ GO
 
 ALTER TABLE [dbo].[Professor] ADD CONSTRAINT UQ_Email UNIQUE (Email)
 
-/* Aluno
-
-DROP TABLE [dbo].[Aluno]
-GO */
+/* Aluno*/
 
 CREATE TABLE [dbo].[Aluno] (
 	[AlunoID] int IDENTITY(1,1) PRIMARY KEY,
@@ -70,6 +59,8 @@ GO
 
 ALTER TABLE [dbo].[Aluno] ADD CONSTRAINT UQ_CodicoAluno UNIQUE (CodigoAluno)
 
+
+/*
 ALTER TABLE [dbo].[Prova]  WITH NOCHECK ADD  CONSTRAINT [FK_Prova_Professor] FOREIGN KEY([ProfessorID])
 REFERENCES [dbo].[Professor] ([ProfessorID])
 GO
@@ -93,4 +84,4 @@ GO
 ALTER TABLE [dbo].[Resposta] CHECK CONSTRAINT [FK_Resposta_Aluno]
 GO
 
-/*--------------------------------------------------------------------------------------------------*/
+--------------------------------------------------------------------------------------------------*/

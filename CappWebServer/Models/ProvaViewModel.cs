@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace CappWebServer.Models
 {
@@ -17,7 +19,20 @@ namespace CappWebServer.Models
 
         [Required]
         [Display(Name = "Quantidade de questões")]
-        public byte QtdQuestoes { get; set; }
+        public int QtdQuestoes { get; set; }
 
     }
+
+    public class EditarGabaritoViewModel
+    {
+        public List<CappWebServer.Resposta> ListaResposta { get; set; }
+
+       // public IEnumerable<SelectListItem> Alternativas { get; set; }       
+
+    }
+
+    /* public enum Alternativas
+     {
+         A, B, C, D, E
+     }*/
 }
