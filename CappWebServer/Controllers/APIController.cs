@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CappWebServer.Service;
+using CappWebServer.Models;
 
 namespace CappWebServer.Controllers
 {
@@ -20,7 +21,12 @@ namespace CappWebServer.Controllers
         public ActionResult GetProva(string codigo)
         {
             Prova p = service.GetProva(codigo);
-            return Json(p, JsonRequestBehavior.AllowGet);
+
+            ProvaWrapper wrapper = new ProvaWrapper();
+            wrapper.Nome = p.Nome;
+            wrapper.QtdQuestoes = p.QtdQuestoes;
+
+            return Json(wrapper, JsonRequestBehavior.AllowGet);
         }
     }
 }
