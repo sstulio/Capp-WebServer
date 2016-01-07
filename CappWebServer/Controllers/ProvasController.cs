@@ -142,7 +142,7 @@ namespace CappWebServer.Controllers
 
             using (CAppDataModel dc = new CAppDataModel())
             {
-                var respostas = dc.Resposta.Where(re => re.ProvaID.Equals(prova.ProvaID));
+                var respostas = dc.Resposta.Where(re => re.ProvaID.Equals(prova.ProvaID) && re.isGabarito.Equals(1));
                 model.ListaResposta.AddRange(respostas);
 
                 for (int i = respostas.Count(); i < prova.QtdQuestoes; i++)
@@ -179,6 +179,7 @@ namespace CappWebServer.Controllers
                         if (resposta != null)
                         {
                             resposta.Alternativa = r.Alternativa;
+                            resposta.isGabarito = 1;
                             UpdateModel(resposta);
                         }
                         else
@@ -191,6 +192,59 @@ namespace CappWebServer.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        // GET: Provas/Resultados/5
+        [Authorize]
+        public ActionResult Resultados(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Prova prova = db.Prova.Find(id);
+            if (prova == null)
+            {
+                return HttpNotFound();
+            }
+
+            ResultadosViewModel model = new ResultadosViewModel();
+
+            model.Prova = prova;
+            model.ListaResultado = new System.Collections.Generic.List<Resultado>();
+
+            using (CAppDataModel dc = new CAppDataModel())
+            {
+                List<string> alunos = dc.Resposta.Where(re => re.ProvaID.Equals(prova.ProvaID) && re.isGabarito.Equals(0)).Select(m => m.CodigoAluno).Distinct().ToList();
+                List<Resposta> gabarito = dc.Resposta.Where(re => re.ProvaID.Equals(prova.ProvaID) && re.isGabarito.Equals(1)).ToList();
+
+                for (int i = 0; i < alunos.Count; i++)
+                {
+                    string aluno = alunos.ElementAt(i);
+                    int acertos = 0;
+                    int totalDeQuestoes = gabarito.Count;
+
+                    List<Resposta> respostaAluno = dc.Resposta.Where(re => re.ProvaID.Equals(prova.ProvaID) && re.CodigoAluno.Equals(aluno)).ToList();
+                    for (int j = 0; j < totalDeQuestoes; j++)
+                    {
+                        if (gabarito.ElementAt(j).Alternativa == respostaAluno.ElementAt(j).Alternativa)
+                        {
+                            acertos++;
+                        }
+                    }
+
+                    Resultado resultado = new Resultado();
+                    resultado.Aluno = aluno;
+                    resultado.Nota = (10 * acertos) / totalDeQuestoes;
+                    model.ListaResultado.Add(resultado);
+                }
+            }
+                
+            
+
+            return View(model);
+        }
+
 
         // GET: Provas/Delete/5
         [Authorize]

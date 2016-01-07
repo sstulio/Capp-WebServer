@@ -25,14 +25,18 @@ namespace CappWebServer.Models
 
     public class EditarGabaritoViewModel
     {
-        public List<CappWebServer.Resposta> ListaResposta { get; set; }
-
-       // public IEnumerable<SelectListItem> Alternativas { get; set; }       
-
+        public List<CappWebServer.Resposta> ListaResposta { get; set; }  
     }
 
-    /* public enum Alternativas
-     {
-         A, B, C, D, E
-     }*/
+    public class ResultadosViewModel
+    {
+        public Prova Prova { get; set; }
+        public List<Resultado> ListaResultado { get; set; }  
+    }
+
+    public class Resultado
+    {
+        public string Aluno { get; set; }
+        public int Nota { get; set; }  
+    }
 }

@@ -1,0 +1,49 @@
+﻿@model CappWebServer.Models.ResultadosViewModel
+
+@{
+    ViewBag.Title = "Resultados";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+
+    <div class="container">
+        <h2>@Model.Prova.Nome</h2>
+        <h3>@Model.Prova.CodigoProva</h3>
+
+      
+        <table class="table">
+            <tr>
+                <th>
+                    Aluno
+                </th>
+                <th>
+                    Nota
+                </th>
+            </tr>
+
+            @if (Model != null && Model.ListaResultado != null)
+            {
+                foreach (var item in Model.ListaResultado)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Aluno)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nota)
+                        </td>
+                    </tr>
+                }
+            }
+
+        </table>
+    </div>
+
+    <div>
+        @Html.ActionLink("Voltar para lista de provas", "Index")
+    </div>
+
+</body>
+
+
