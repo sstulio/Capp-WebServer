@@ -7,8 +7,8 @@ namespace CappWebServer.Models
 {
     public class ProvaWrapper
     {
+        public int ID { get; set; }
         public string Nome { get; set; }
-
         public int QtdQuestoes { get; set; }
     }
 }

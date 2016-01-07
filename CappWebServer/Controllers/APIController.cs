@@ -18,15 +18,40 @@ namespace CappWebServer.Controllers
         }
 
         // GET: API
-        public ActionResult GetProva(string codigo)
+        public ActionResult PegarProva(string codigo)
         {
             Prova p = service.GetProva(codigo);
 
-            ProvaWrapper wrapper = new ProvaWrapper();
-            wrapper.Nome = p.Nome;
-            wrapper.QtdQuestoes = p.QtdQuestoes;
+            if (p != null) { 
+                ProvaWrapper wrapper = new ProvaWrapper();
+                wrapper.ID = p.ProvaID;
+                wrapper.Nome = p.Nome;
+                wrapper.QtdQuestoes = p.QtdQuestoes;
 
-            return Json(wrapper, JsonRequestBehavior.AllowGet);
+                return Json(wrapper, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json("", JsonRequestBehavior.AllowGet);
+        }
+
+        // GET: API
+        public ActionResult Responder(int provaID, string aluno, string respostas)
+        {
+            bool result = false;
+            for (int i = 0; i < respostas.Length; i += 2)
+            {
+                Resposta resposta = new Resposta();
+                resposta.ProvaID = provaID;
+                resposta.CodigoAluno = aluno;
+                resposta.isGabarito = 0;
+
+                resposta.Questao = respostas[i] - 48; //48 = '0' na tabela ASCII
+                resposta.Alternativa = respostas[i + 1].ToString();
+
+                result = service.InserirResposta(resposta);
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
 }

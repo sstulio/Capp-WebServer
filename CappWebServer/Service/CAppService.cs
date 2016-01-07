@@ -17,5 +17,21 @@ namespace CappWebServer.Service
             }
         }
 
+        public bool InserirResposta(Resposta resposta)
+        {
+            using (CAppDataModel dc = new CAppDataModel())
+            {
+                var r = dc.Resposta.Where(a => a.ProvaID.Equals(resposta.ProvaID) && a.Questao.Equals(resposta.Questao) && a.CodigoAluno.Equals(resposta.CodigoAluno)).FirstOrDefault();
+                if (r == null)
+                {
+                    dc.Resposta.Add(resposta);
+                    dc.SaveChanges();
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
     }
 }

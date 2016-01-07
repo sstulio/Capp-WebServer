@@ -159,14 +159,6 @@ namespace CappWebServer.Controllers
 
             }
 
-            /*IEnumerable<Alternativas> alternativas = Enum.GetValues(typeof(Alternativas)).Cast<Alternativas>();
-            model.Alternativas = from alternativa in alternativas
-                                select new SelectListItem
-                                {
-                                    Text = alternativa.ToString(),
-                                    Value = alternativa.ToString()
-                                };*/
-
             return View(model);
         }
 
@@ -239,7 +231,8 @@ namespace CappWebServer.Controllers
 
         public static string RandomString(int length)
         {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            //const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            const string chars = "ABCDE0123456789";
             var random = new Random();
             return new string(Enumerable.Repeat(chars, length)
               .Select(s => s[random.Next(s.Length)]).ToArray());
