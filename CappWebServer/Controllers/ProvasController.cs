@@ -208,6 +208,8 @@ namespace CappWebServer.Controllers
                 return HttpNotFound();
             }
 
+            ViewBag.ProvaID = prova.ProvaID;
+
             ResultadosViewModel model = new ResultadosViewModel();
 
             model.Prova = prova;
@@ -241,6 +243,40 @@ namespace CappWebServer.Controllers
             }
                 
             
+
+            return View(model);
+        }
+
+        // GET: Provas/RespostaAluno/5
+        [Authorize]
+        public ActionResult RespostaAluno(int? provaID, string alunoID)
+        {
+            if (provaID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Prova prova = db.Prova.Find(provaID);
+            if (prova == null)
+            {
+                return HttpNotFound();
+            }
+
+            RespostaAlunoViewModel model = new RespostaAlunoViewModel();
+
+            model.Prova = prova;
+            ViewBag.AlunoID = alunoID;
+
+            using (CAppDataModel dc = new CAppDataModel())
+            {
+                List<Resposta> resposta = dc.Resposta.Where(re => re.ProvaID.Equals(prova.ProvaID) && re.isGabarito.Equals(0) && re.CodigoAluno.Equals(alunoID)).ToList();
+                List<Resposta> gabarito = dc.Resposta.Where(re => re.ProvaID.Equals(prova.ProvaID) && re.isGabarito.Equals(1)).ToList();
+
+                model.RespostaAluno = resposta;
+                model.RespostaGabarito = gabarito;
+            }
+
+
 
             return View(model);
         }

@@ -34,6 +34,13 @@ namespace CappWebServer.Models
         public List<Resultado> ListaResultado { get; set; }  
     }
 
+    public class RespostaAlunoViewModel
+    {
+        public List<Resposta> RespostaGabarito { get; set; }
+        public List<Resposta> RespostaAluno { get; set; }
+        public Prova Prova { get; set; }
+    }
+
     public class Resultado
     {
         public string Aluno { get; set; }

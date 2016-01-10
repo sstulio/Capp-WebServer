@@ -240,6 +240,7 @@
     <Content Include="Views\Provas\Index.cshtml" />
     <Content Include="Views\Provas\EditarGabarito.cshtml" />
     <Content Include="Views\Provas\Resultados.cshtml" />
+    <Content Include="Views\Provas\RespostaAluno.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

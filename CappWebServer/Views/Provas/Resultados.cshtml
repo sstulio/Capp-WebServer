@@ -28,7 +28,8 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Aluno)
+
+                            @Html.ActionLink(item.Aluno, "RespostaAluno", new { provaID = ViewBag.ProvaID, alunoID = item.Aluno })
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Nota)
